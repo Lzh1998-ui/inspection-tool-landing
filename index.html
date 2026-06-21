@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>外贸验货报告生成器 - 3分钟自动生成专业验货报告</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f7fa;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            opacity: 0.95;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: #ff6b6b;
+            color: white;
+            padding: 15px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 107, 107, 0.6);
+        }
+        
+        /* Features Section */
+        .features {
+            padding: 80px 0;
+            background: white;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 50px;
+            color: #2d3748;
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+        
+        .feature-card {
+            text-align: center;
+            padding: 30px;
+            border-radius: 10px;
+            background: #f8f9fa;
+            transition: all 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #4a5568;
+        }
+        
+        .feature-card p {
+            color: #718096;
+        }
+        
+        /* How it works */
+        .how-it-works {
+            padding: 80px 0;
+            background: #f5f7fa;
+        }
+        
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .step {
+            text-align: center;
+            position: relative;
+        }
+        
+        .step-number {
+            display: inline-block;
+            width: 60px;
+            height: 60px;
+            background: #667eea;
+            color: white;
+            border-radius: 50%;
+            line-height: 60px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        
+        .step h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: #2d3748;
+        }
+        
+        .step p {
+            color: #718096;
+        }
+        
+        /* Pricing */
+        .pricing {
+            padding: 80px 0;
+            background: white;
+        }
+        
+        .pricing-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .pricing-card {
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 40px 30px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+        
+        .pricing-card.featured {
+            border-color: #667eea;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.2);
+        }
+        
+        .pricing-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: #2d3748;
+        }
+        
+        .price {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #667eea;
+            margin-bottom: 20px;
+        }
+        
+        .price span {
+            font-size: 1rem;
+            color: #718096;
+        }
+        
+        .pricing-card ul {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+        
+        .pricing-card ul li {
+            padding: 10px 0;
+            border-bottom: 1px solid #e2e8f0;
+            color: #4a5568;
+        }
+        
+        /* Footer */
+        .footer {
+            background: #2d3748;
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+        }
+        
+        .footer a {
+            color: #667eea;
+            text-decoration: none;
+        }
+        
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .section-title {
+                font-size: 1.5rem;
+            }
+            
+            .feature-grid, .steps, .pricing-cards {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>🚀 外贸验货报告生成器</h1>
+            <p>上传照片 + 填写信息，3分钟自动生成专业验货报告</p>
+            <p style="font-size: 1rem; margin-bottom: 40px;">适合中小外贸企业 · 跨境电商卖家 · 第三方验货员</p>
+            <a href="https://YOUR-STREAMLIT-URL.streamlit.app" class="cta-button">免费试用 →</a>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title">为什么选择我们？</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>极速生成</h3>
+                    <p>告别手动排版，上传照片即可自动生成标准化验货报告，节省80%时间</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📸</div>
+                    <h3>照片管理</h3>
+                    <p>支持批量上传验货照片，自动分类排版，再也不用手动调整图片顺序</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>专业模板</h3>
+                    <p>内置多种行业标准模板（服装/电子/家居等），满足不同产品验货需求</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💾</div>
+                    <h3>多格式导出</h3>
+                    <p>支持PDF/Word/Excel导出，方便邮件发送和客户归档</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">☁️</div>
+                    <h3>云端存储</h3>
+                    <p>所有报告自动保存云端，随时随地查看历史记录，再也不怕文件丢失</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💰</div>
+                    <h3>低成本</h3>
+                    <p>相比传统验货软件动辄数千元，我们提供超高性价比的订阅方案</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How it works -->
+    <section class="how-it-works">
+        <div class="container">
+            <h2 class="section-title">如何使用？</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>上传验货照片</h3>
+                    <p>在现场拍摄产品照片，批量上传到系统</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>填写基本信息</h3>
+                    <p>输入产品信息、验货标准、不合格项等</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>一键生成报告</h3>
+                    <p>系统自动排版，生成专业验货报告</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3>导出并发送</h3>
+                    <p>下载PDF/Word，直接发给客户或存档</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing">
+        <div class="container">
+            <h2 class="section-title">简单透明的价格</h2>
+            <div class="pricing-cards">
+                <!-- Free Plan -->
+                <div class="pricing-card">
+                    <h3>免费版</h3>
+                    <div class="price">¥0<span>/月</span></div>
+                    <ul>
+                        <li>✅ 每月3份验货报告</li>
+                        <li>✅ 基础模板</li>
+                        <li>✅ 导出PDF</li>
+                        <li>✅ 社区支持</li>
+                        <li>❌ 高级模板</li>
+                        <li>❌ 去除水印</li>
+                    </ul>
+                    <a href="https://YOUR-STREAMLIT-URL.streamlit.app" class="cta-button" style="background: #718096;">开始试用</a>
+                </div>
+                
+                <!-- Pro Plan -->
+                <div class="pricing-card featured">
+                    <h3>专业版</h3>
+                    <div class="price">¥99<span>/月</span></div>
+                    <ul>
+                        <li>✅ 无限份验货报告</li>
+                        <li>✅ 所有高级模板</li>
+                        <li>✅ 导出PDF/Word/Excel</li>
+                        <li>✅ 去除水印</li>
+                        <li>✅ 云端存储90天</li>
+                        <li>✅ 邮件支持</li>
+                    </ul>
+                    <a href="#" class="cta-button">立即订阅</a>
+                </div>
+                
+                <!-- Enterprise Plan -->
+                <div class="pricing-card">
+                    <h3>企业版</h3>
+                    <div class="price">¥999<span>/年</span></div>
+                    <ul>
+                        <li>✅ 专业版所有功能</li>
+                        <li>✅ 多账号管理</li>
+                        <li>✅ API接口</li>
+                        <li>✅ 定制化模板</li>
+                        <li>✅ 云端存储1年</li>
+                        <li>✅ 专属客服</li>
+                    </ul>
+                    <a href="#" class="cta-button" style="background: #718096;">联系我们</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>© 2026 外贸验货报告生成器 | 让验货更简单</p>
+            <p style="margin-top: 10px;">
+                <a href="https://YOUR-STREAMLIT-URL.streamlit.app">立即试用</a> · 
+                <a href="#">使用教程</a> · 
+                <a href="#">联系我们</a>
+            </p>
+        </div>
+    </footer>
+</body>
+</html>
